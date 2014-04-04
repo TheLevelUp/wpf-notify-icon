@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Hardcodet.NotifyIcon.Wpf.Net3</id>
+    <version>1.0.0</version>
+    <title>Hardcodet WPF NotifyIcon For .Net3</title>
+    <authors>Ryan Smulan</authors>
+    <owners>Ryan Smulan</owners>
+    <projectUrl>https://github.com/TheLevelUp/wpf-notify-icon</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>NotifyIcon implementation for .Net 3.0 WPF platform</description>
+    <copyright>Copyright 2014</copyright>
+  </metadata>
+  <files>
+    <file src="bin\Release 3.0\Hardcodet.Wpf.TaskbarNotification.dll" target="lib\net30" />
+    <file src="bin\Release 3.0\Hardcodet.Wpf.TaskbarNotification.pdb" target="lib\net30" />
+  </files>
+</package>
