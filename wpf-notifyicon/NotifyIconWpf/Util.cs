@@ -137,7 +137,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// Gets a <see cref="BalloonFlags"/> enum value that
         /// matches a given <see cref="BalloonIcon"/>.
         /// </summary>
-        public static BalloonFlags GetBalloonFlag(this BalloonIcon icon)
+        public static BalloonFlags GetBalloonFlag(BalloonIcon icon)
         {
             switch (icon)
             {
@@ -165,7 +165,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// an icon file (*.ico).</param>
         /// <returns>An icon object that can be used with the
         /// taskbar area.</returns>
-        public static Icon ToIcon(this ImageSource imageSource)
+        public static Icon ToIcon(ImageSource imageSource)
         {
             if (imageSource == null) return null;
 
@@ -200,7 +200,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// which allows to check with null values, too.</returns>
         /// <exception cref="ArgumentNullException">If <paramref name="candidates"/>
         /// is a null reference.</exception>
-        public static bool Is<T>(this T value, params T[] candidates)
+        public static bool Is<T>(T value, params T[] candidates)
         {
             if (candidates == null) return false;
 
@@ -220,7 +220,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// Checks if a given <see cref="PopupActivationMode"/> is a match for
         /// an effectively pressed mouse button.
         /// </summary>
-        public static bool IsMatch(this MouseEvent me, PopupActivationMode activationMode)
+        public static bool IsMatch(MouseEvent me, PopupActivationMode activationMode)
         {
             switch (activationMode)
             {
@@ -229,11 +229,11 @@ namespace Hardcodet.Wpf.TaskbarNotification
                 case PopupActivationMode.RightClick:
                     return me == MouseEvent.IconRightMouseUp;
                 case PopupActivationMode.LeftOrRightClick:
-                    return me.Is(MouseEvent.IconLeftMouseUp, MouseEvent.IconRightMouseUp);
+                    return Is(me, MouseEvent.IconLeftMouseUp, MouseEvent.IconRightMouseUp);
                 case PopupActivationMode.LeftOrDoubleClick:
-                    return me.Is(MouseEvent.IconLeftMouseUp, MouseEvent.IconDoubleClick);
+                    return Is(me, MouseEvent.IconLeftMouseUp, MouseEvent.IconDoubleClick);
                 case PopupActivationMode.DoubleClick:
-                    return me.Is(MouseEvent.IconDoubleClick);
+                    return Is(me, MouseEvent.IconDoubleClick);
                 case PopupActivationMode.MiddleClick:
                     return me == MouseEvent.IconMiddleMouseUp;
                 case PopupActivationMode.All:
@@ -256,7 +256,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// <param name="commandParameter">An optional parameter that is associated with
         /// the command.</param>
         /// <param name="target">The target element on which to raise the command.</param>
-        public static void ExecuteIfEnabled(this ICommand command, object commandParameter, IInputElement target)
+        public static void ExecuteIfEnabled(ICommand command, object commandParameter, IInputElement target)
         {
             if (command == null) return;
 
@@ -278,7 +278,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// Returns a dispatcher for multi-threaded scenarios
         /// </summary>
         /// <returns></returns>
-        internal static Dispatcher GetDispatcher(this DispatcherObject source)
+        internal static Dispatcher GetDispatcher(DispatcherObject source)
         {
             //use the application's dispatcher by default
             if (Application.Current != null) return Application.Current.Dispatcher;
@@ -300,7 +300,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// binding expression.</returns>
         /// <exception cref="ArgumentNullException">If <paramref name="element"/>
         /// is a null reference.</exception>
-        public static bool IsDataContextDataBound(this FrameworkElement element)
+        public static bool IsDataContextDataBound(FrameworkElement element)
         {
             if (element == null) throw new ArgumentNullException("element");
             return element.GetBindingExpression(FrameworkElement.DataContextProperty) != null;

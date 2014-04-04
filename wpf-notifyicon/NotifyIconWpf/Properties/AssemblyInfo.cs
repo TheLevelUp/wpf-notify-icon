@@ -8,11 +8,11 @@ using System.Windows.Markup;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("NotifyIcon for WPF")]
-[assembly: AssemblyDescription("NotifyIcon implementation for the WPF platform.")]
+[assembly: AssemblyTitle("NotifyIcon for .Net 3.0 WPF")]
+[assembly: AssemblyDescription("NotifyIcon implementation for .Net 3.0 WPF platform.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("hardcodet.net")]
-[assembly: AssemblyProduct("NotifyIcon WPF")]
+[assembly: AssemblyProduct("NotifyIcon WPF for .Net 3.0")]
 [assembly: AssemblyCopyright("Copyright © Philipp Sumi 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
