@@ -12,7 +12,7 @@
     <copyright>Copyright 2014</copyright>
   </metadata>
   <files>
-    <file src="bin\Release 3.0\Hardcodet.Wpf.TaskbarNotification.dll" target="lib\net30" />
-    <file src="bin\Release 3.0\Hardcodet.Wpf.TaskbarNotification.pdb" target="lib\net30" />
+    <file src="bin\Release\Hardcodet.Wpf.TaskbarNotification.dll" target="lib\net30" />
+    <file src="bin\Release\Hardcodet.Wpf.TaskbarNotification.pdb" target="lib\net30" />
   </files>
 </package>
