@@ -158,7 +158,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// is a null reference.</exception>
         public void ShowCustomBalloon(UIElement balloon, PopupAnimation animation, int? timeout)
         {
-            Dispatcher dispatcher = this.GetDispatcher();
+            Dispatcher dispatcher = Util.GetDispatcher(this);
             if (!dispatcher.CheckAccess())
             {
                 var action = new Action(() => ShowCustomBalloon(balloon, animation, timeout));
@@ -272,7 +272,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         {
             if (IsDisposed) return;
 
-            Dispatcher dispatcher = this.GetDispatcher();
+            Dispatcher dispatcher = Util.GetDispatcher(this);
             if (!dispatcher.CheckAccess())
             {
                 Action action = CloseBalloon;
@@ -326,7 +326,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
 
             //switch to UI thread
             Action action = CloseBalloon;
-            this.GetDispatcher().Invoke(action);
+            Util.GetDispatcher(this).Invoke(action);
         }
 
         #endregion
@@ -399,14 +399,14 @@ namespace Hardcodet.Wpf.TaskbarNotification
             bool isLeftClickCommandInvoked = false;
 
             //show popup, if requested
-            if (me.IsMatch(PopupActivation))
+            if (Util.IsMatch(me, PopupActivation))
             {
                 if (me == MouseEvent.IconLeftMouseUp)
                 {
                     //show popup once we are sure it's not a double click
                     singleClickTimerAction = () =>
                     {
-                        LeftClickCommand.ExecuteIfEnabled(LeftClickCommandParameter, LeftClickCommandTarget ?? this);
+                        Util.ExecuteIfEnabled(LeftClickCommand, LeftClickCommandParameter, LeftClickCommandTarget ?? this);
                         ShowTrayPopup(cursorPosition);
                     };
                     singleClickTimer.Change(WinApi.GetDoubleClickTime(), Timeout.Infinite);
@@ -421,14 +421,14 @@ namespace Hardcodet.Wpf.TaskbarNotification
 
 
             //show context menu, if requested
-            if (me.IsMatch(MenuActivation))
+            if (Util.IsMatch(me, MenuActivation))
             {
                 if (me == MouseEvent.IconLeftMouseUp)
                 {
                     //show context menu once we are sure it's not a double click
                     singleClickTimerAction = () =>
                     {
-                        LeftClickCommand.ExecuteIfEnabled(LeftClickCommandParameter, LeftClickCommandTarget ?? this);
+                        Util.ExecuteIfEnabled(LeftClickCommand, LeftClickCommandParameter, LeftClickCommandTarget ?? this);
                         ShowContextMenu(cursorPosition);
                     };
                     singleClickTimer.Change(WinApi.GetDoubleClickTime(), Timeout.Infinite);
@@ -448,7 +448,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
                 singleClickTimerAction =
                     () =>
                     {
-                        LeftClickCommand.ExecuteIfEnabled(LeftClickCommandParameter, LeftClickCommandTarget ?? this);
+                        Util.ExecuteIfEnabled(LeftClickCommand, LeftClickCommandParameter, LeftClickCommandTarget ?? this);
                     };
                 singleClickTimer.Change(WinApi.GetDoubleClickTime(), Timeout.Infinite);
             }
@@ -772,7 +772,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         {
             lock (this)
             {
-                ShowBalloonTip(title, message, symbol.GetBalloonFlag(), IntPtr.Zero);
+                ShowBalloonTip(title, message, Util.GetBalloonFlag(symbol), IntPtr.Zero);
             }
         }
 
@@ -852,7 +852,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
                 singleClickTimerAction = null;
 
                 //switch to UI thread
-                this.GetDispatcher().Invoke(action);
+                Util.GetDispatcher(this).Invoke(action);
             }
         }
 

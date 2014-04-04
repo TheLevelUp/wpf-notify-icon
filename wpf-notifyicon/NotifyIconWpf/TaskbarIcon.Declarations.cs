@@ -244,7 +244,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
             ImageSource newValue = (ImageSource) e.NewValue;
 
             //resolving the ImageSource at design time is unlikely to work
-            if (!Util.IsDesignMode) Icon = newValue.ToIcon();
+            if (!Util.IsDesignMode) Icon = Util.ToIcon(newValue);
         }
 
         #endregion
@@ -576,7 +576,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         {
             //if there is no target or it's data context is determined through a binding
             //of its own, keep it
-            if (target == null || target.IsDataContextDataBound()) return;
+            if (target == null || Util.IsDataContextDataBound(target)) return;
 
             //if the target's data context is the NotifyIcon's old DataContext or the NotifyIcon itself,
             //update it
@@ -1106,7 +1106,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         protected RoutedEventArgs RaiseTrayMouseDoubleClickEvent()
         {
             RoutedEventArgs args = RaiseTrayMouseDoubleClickEvent(this);
-            DoubleClickCommand.ExecuteIfEnabled(DoubleClickCommandParameter, DoubleClickCommandTarget ?? this);
+            Util.ExecuteIfEnabled(DoubleClickCommand, DoubleClickCommandParameter, DoubleClickCommandTarget ?? this);
             return args;
         }
 
