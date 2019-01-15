@@ -1,3 +1,5 @@
+⛔️ DEPRECATED
+
 wpf-notify-icon
 ===============
 
